@@ -1,0 +1,31 @@
+package com.cab.service;
+
+import java.util.Scanner;
+
+import com.cab.model.User;
+import com.cab.repository.UserRepository;
+
+public class UserService {
+	
+	Scanner scanner = new Scanner(System.in);
+	UserRepository userrepository = new UserRepository();
+	
+	public void add_user()
+	{
+		System.out.println("Enter user name:");
+		String userName = scanner.nextLine();
+		System.out.println("Enter user gender (M/F):");
+		String userGender = scanner.nextLine();
+		System.out.println("Enter user age:");
+		int userAge = scanner.nextInt();
+		
+		User user = new User(userName, userGender, userAge);
+		
+		System.out.println("In progress: "+user);
+		userrepository.addUserInList(user);
+		System.out.println("User added sucessfully");
+	}
+	
+	
+
+}

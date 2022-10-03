@@ -1,0 +1,50 @@
+package com.cab.repository;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cab.model.Driver;
+
+public class DriverRepository {
+	
+	static List<Driver> driverList = new ArrayList<>();
+
+	public List<Driver> getDriverList() {
+		return this.driverList;
+	}
+
+	public void setDriverList(ArrayList<Driver> driverList) {
+		this.driverList = driverList;
+	}
+	
+	public void addDriverInList(Driver driver)
+	{
+		this.driverList.add(driver);
+	}
+	
+	public List<Driver> DisplayList()
+	{
+		return this.driverList;
+	}
+	
+	public void setDriverUnavailable(String Name)
+	{
+		for(int i=0; i<driverList.size(); i++)
+		{
+			if(Name.equals(driverList.get(i).getDriverCarName()))
+			{
+				driverList.get(i).setDriverStatus(false);
+			}
+		}
+	}
+	
+	public void displayDrivers()
+	{
+		
+		//System.out.println("Driver Data: "+driverList);
+		for(int i=0; i<driverList.size(); i++)
+		{
+			System.out.println(driverList.get(i).getDriverName() +"\t"+ driverList.get(i).getDriverGender() +"\t"+ driverList.get(i).getDriverAge() +"\t" +driverList.get(i).getDriverCarName() +"\t"+ driverList.get(i).getDriverCarNumber() +"\t"+ driverList.get(i).getDriverCoordinate()[0] +"\t"+ driverList.get(i).getDriverCoordinate()[1]);
+		}
+	}
+}

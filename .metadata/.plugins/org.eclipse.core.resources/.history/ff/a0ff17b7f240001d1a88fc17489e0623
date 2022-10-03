@@ -1,0 +1,5 @@
+package com.cab.repository;
+
+public class UserRepository {
+
+}

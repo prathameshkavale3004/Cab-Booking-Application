@@ -1,0 +1,16 @@
+package com.cab.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cab.model.Driver;
+import com.cab.repository.DriverRepository;
+
+public class BookCab {
+	
+	DriverRepository driverrepository = new DriverRepository();
+	
+	
+	
+
+}

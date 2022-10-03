@@ -1,0 +1,29 @@
+package com.cab.repository;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cab.model.Driver;
+
+public class DriverRepository {
+	
+	List<Driver> driverList = new ArrayList<>();
+
+	public List<Driver> getDriverList() {
+		return driverList;
+	}
+
+	public void setDriverList(ArrayList<Driver> driverList) {
+		this.driverList = driverList;
+	}
+	
+	public void addDriverInList(Driver driver)
+	{
+		this.driverList.add(driver);
+	}
+	
+	public List<Driver> DisplayList()
+	{
+		return driverList;
+	}
+}

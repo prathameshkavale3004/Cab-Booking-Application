@@ -1,0 +1,47 @@
+package com.cab.service;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.cab.model.User;
+import com.cab.repository.UserRepository;
+
+public class UserService {
+	
+	Scanner scanner = new Scanner(System.in);
+	UserRepository userrepository = new UserRepository();
+	
+	public void add_user(String userName, String userGender, int userAge)
+	{
+		User user = new User(userName, userGender, userAge);
+		
+		userrepository.addUserInList(user);
+		System.out.println("User added sucessfully:");
+		System.out.println(user);
+		
+	}
+	
+	public void displayList()
+	{
+		List<User> userList = userrepository.displayList();
+		//System.out.println("User Data:"+userList);
+		System.out.println("User name\t Gender\t Age/n");
+		for(int i=0; i<userList.size(); i++)
+		{
+			System.out.println(userList.get(i).getUserName() +"\t"+ userList.get(i).getUserGender() +"\t"+ userList.get(i).getUserAge());
+		}
+	}
+	
+	public boolean search_User(String name)
+	{
+		List<User> userList = userrepository.getUserList();
+		for(int i=0; i<userList.size();i++)
+		{
+			if(name.equals(userList.get(i).getUserName()))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+}
