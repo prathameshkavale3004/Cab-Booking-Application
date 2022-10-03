@@ -1,0 +1,50 @@
+package com.cab.main;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.cab.service.UserService;
+
+
+
+public class CabBookingApplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("hiii");
+		
+		Scanner sc = new Scanner(System.in);
+		
+		UserService userservice = new UserService();
+		
+		int choice=0;
+		while(choice!=4) {
+			System.out.println("Enter your choice : ");
+			System.out.println("1.Add user\n2.Add driver\n3.Book a Cab\n4.Exit");
+			choice = sc.nextInt();
+			
+
+			switch(choice) {
+			
+			case 1:
+				//register
+				userservice.add_user();
+				break;
+			case 2: 
+				//search
+				
+				break;
+			case 3:
+				//display list
+				List<Student> list = service.displayStudent();
+				System.out.println("Student Data :"+list);
+				break;
+			default:
+				System.out.println("Enter correct choice");
+			
+			}
+		}
+
+	}
+
+}

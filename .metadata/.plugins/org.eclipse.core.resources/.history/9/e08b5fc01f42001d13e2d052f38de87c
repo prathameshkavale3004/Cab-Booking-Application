@@ -1,0 +1,50 @@
+package com.cab.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cab.model.Driver;
+import com.cab.repository.DriverRepository;
+
+public class BookCab {
+	
+	DriverRepository driverrepository = new DriverRepository();
+	ArrayList<Driver> availableCabs = new ArrayList<>();
+	
+	public ArrayList<Driver> find_ride(String userName, int[] source, int[] destination){
+		
+		System.out.println("hii1");
+		ArrayList<Driver> result = new ArrayList<>();
+		result = driverrepository.getDriverList();
+		availableCabs.clear();
+		
+		for(int i=0; i<result.size(); i++)
+		{
+			System.out.println("hii2");
+			int[] driverCoordinates = result.get(i).getDriverCoordinate();
+			int ans = (int) Math.sqrt((driverCoordinates[0]-source[0])^2+(driverCoordinates[1]-source[1])^2);
+			System.out.println(ans);
+			if(ans <= 5 && result.get(i).isDriverStatus()==true)
+			{
+				availableCabs.add(result.get(i));
+			}
+		}
+		
+		return availableCabs;
+	}
+	
+	public void choose_ride(String userName, String driverName)
+	{
+		for(int i=0; i<availableCabs.size(); i++)
+		{
+			if(driverName.equals(availableCabs.get(i).getDriverCarName()))
+			{
+				driverrepository.setDriverUnavailable(driverName);
+				availableCabs.get(i).setDriverStatus(false);
+			}
+		}
+	}
+	
+	
+
+}

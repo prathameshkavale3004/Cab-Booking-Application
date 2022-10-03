@@ -1,0 +1,24 @@
+package com.cab.service;
+
+import java.util.Scanner;
+
+import com.cab.model.Driver;
+import com.cab.model.User;
+import com.cab.repository.DriverRepository;
+
+public class DriverService {
+
+	
+	Scanner scanner = new Scanner(System.in);
+	DriverRepository driverrepository = new DriverRepository();
+	
+	public void add_driver(String driverName, String driverGender, int driverAge, String driverCarName, String driverCarNumber, int[] driverCoordinate, boolean driverStatus)
+	{
+		Driver driver = new Driver(driverName, driverGender, driverAge, driverCarName, driverCarNumber, driverCoordinate, driverStatus);
+		
+		System.out.println("In progress: "+driver);
+		driverrepository.addDriverInList(driver);
+		System.out.println("User added sucessfully");
+		
+	}
+}

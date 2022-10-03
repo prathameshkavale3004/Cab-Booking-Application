@@ -1,0 +1,61 @@
+package com.cab.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cab.model.Driver;
+import com.cab.repository.DriverRepository;
+
+public class BookCab {
+	
+	DriverRepository driverrepository = new DriverRepository();
+	List<Driver> availableCabs = new ArrayList<>();
+	
+	public List<Driver> find_ride(String userName, int[] source, int[] destination){
+		
+		
+		List<Driver> result = new ArrayList<>();
+		result=driverrepository.getDriverList();
+		System.out.println(result);
+		availableCabs.clear();
+		
+		for(int i=0; i<result.size(); i++)
+		{
+			
+			int[] driverCoordinates = result.get(i).getDriverCoordinate();
+			System.out.println(driverCoordinates[0]);
+			System.out.println(driverCoordinates[1]);
+			System.out.println(source[0]);
+			System.out.println(source[1]);
+			long temp = (driverCoordinates[0]-source[0])*(driverCoordinates[0]-source[0])+(driverCoordinates[1]-source[1])*(driverCoordinates[1]-source[1]);
+			long ans = (long) Math.sqrt(temp);
+			System.out.println("temp" +temp);
+			System.out.println("ans:"+ans);
+			if(ans <= 5 && result.get(i).isDriverStatus()==true)
+			{
+				availableCabs.add(result.get(i));
+			}
+		}
+		
+		return availableCabs;
+	}
+	
+	public void choose_ride(String userName, String driverName)
+	{
+		if(availableCabs.size()==0)
+		{
+			System.out.println("No ride found");
+		}
+		else {
+			for(int i=0; i<availableCabs.size(); i++)
+			{
+				if(driverName.equals(availableCabs.get(i).getDriverName()))
+				{
+					driverrepository.setDriverUnavailable(driverName);
+					availableCabs.get(i).setDriverStatus(false);
+					System.out.println("Your cab is booked driver details are: \n" +availableCabs.get(i).getDriverName() +"\n"+ availableCabs.get(i).getDriverCarName() +"\n"+ availableCabs.get(i).getDriverCarNumber());
+				}
+			}
+		}	
+	}
+}

@@ -1,0 +1,78 @@
+package com.cab.main;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.cab.service.DriverService;
+import com.cab.service.UserService;
+
+
+
+public class CabBookingApplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("hiii");
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		UserService userservice = new UserService();
+		DriverService driverservice = new DriverService();
+		int choice=0;
+		while(choice!=5) {
+			System.out.println("Enter your choice : ");
+			System.out.println("1. Add User\n2. Display User\n3. Add Driver\n4. Display drivers\n5.exit");
+			choice = scanner.nextInt();
+			
+
+			switch(choice) {
+			
+			case 1:
+				//register
+				System.out.println("Enter user name:");
+				String userName = scanner.next();
+				System.out.println("Enter user gender (M/F):");
+				String userGender = scanner.next();
+				System.out.println("Enter user age:");
+				int userAge = scanner.nextInt();
+				
+				userservice.add_user(userName, userGender, userAge);
+				
+				break;
+			case 2: 
+				
+				userservice.displayList();
+				break;
+			case 3:
+				System.out.println("Enter driver name:");
+				String driverName = scanner.next();
+				System.out.println("Enter driver gender (M/F):");
+				String driverGender = scanner.next();
+				System.out.println("Enter driver age:");
+				int driverAge = scanner.nextInt();
+				System.out.println("Enter Car Name:");
+				String driverCarName = scanner.next();
+				System.out.println("Enter Car Number:");
+				String driverCarNumber = scanner.next();
+				System.out.println("Enter Driver X Co-ordiante: ");
+				int driverXCoordinate = scanner.nextInt();
+				System.out.println("Enter Driver Y Co-ordiante: ");
+				int driverYCoordinate = scanner.nextInt();
+				int[] driverCoordinate = {driverXCoordinate, driverYCoordinate};
+				/*System.out.println("Enter Driver status: ");
+				boolean driverStatus = scanner.nextBoolean();*/
+				
+				driverservice.add_driver(driverName, driverGender, driverAge, driverCarName, driverCarNumber, driverCoordinate, true);
+				break;
+			case 4:
+				driverservice.display_drivers();
+				break;
+			default:
+				System.out.println("Enter correct choice");
+			
+			}
+		}
+
+	}
+
+}

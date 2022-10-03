@@ -1,0 +1,25 @@
+package com.cab.repository;
+
+import java.util.ArrayList;
+
+import com.cab.model.User;
+
+
+
+public class UserRepository {
+
+	ArrayList<User> userList = new ArrayList<>();
+
+	public ArrayList<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(ArrayList<User> userList) {
+		this.userList = userList;
+	}
+	
+	public void addUserInList(User user)
+	{
+		this.userList.add(user);
+	}
+}
